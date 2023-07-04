@@ -201,4 +201,23 @@ spec:
   - port: 5432
 ```
 
+### Run Commands
+```
+kubectl apply -f Namespace.yaml                                 # create namespace
+kubectl apply -f ResourceQuota.yml                              # create resourcequota
+kubectl describe namespaces twoge-ns                            # describe twoge-ns namespace
+kubectl apply -f . --namespace twoge-ns                         # attach all resource to namespace
+kubectl get resourcequotas --namespace twoge-ns                 # apply resourcequota twoge-ns resourcequota
+kubectl config set-context --current --namespace=twoge-ns       # Set namespace preference
+kubectl get pods --namespace twoge-ns                           # get pods associated with twoge-ns namespace
+
+```
+
+
+
+
+
+
+
+
 
