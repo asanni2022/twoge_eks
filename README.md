@@ -217,6 +217,8 @@ kubectl get pods --namespace twoge-ns                           # get pods assoc
 ```
 minikube service twoge-k8s-service -n twoge-ns --url
 ```
+![Ns](https://github.com/asanni2022/twoge_eks/assets/104282577/0ca7d64d-cf23-4d0d-add7-2d3d55d7de50)
+
 
 ![twoge2](https://github.com/asanni2022/twoge_eks/assets/104282577/eb5f5fe7-afca-4ae7-8cec-321125499434)
 
