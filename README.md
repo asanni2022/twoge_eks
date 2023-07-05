@@ -201,6 +201,101 @@ spec:
   - port: 5432
 ```
 
+### Persistent Volume PV yml file
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mypv
+  labels:
+    team: twoge
+spec:
+  capacity:
+    storage: 2Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: slow
+  hostPath:
+    path: "/data"
+```
+
+### Persistent Volume Claim PVC yml file
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: twoge-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+      team: twoge
+```
+
+### Twoge web deployment with PVC Volume yml file
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twoge-dep
+  labels:
+    app: twoge-k8s
+spec:
+  selector:
+    matchLabels:
+      app: twoge-k8s
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: twoge-k8s
+    spec:
+      containers:
+        - name: twoge-container
+          image: asanni2022/twoge-eks
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/data"
+              name: twoge-pvc-storage
+          env:
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: db_name
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_url
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_port
+      volumes:
+        - name: twoge-pvc-storage
+          persistentVolumeClaim:
+            claimName: twoge-pvc
+```
+
 ### Run Commands
 ```
 kubectl apply -f Namespace.yaml                                 # create namespace
