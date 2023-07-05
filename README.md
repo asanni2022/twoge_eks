@@ -387,6 +387,14 @@ minikube service twoge-k8s-service -n twoge-ns --url
 
 ![twoge1](https://github.com/asanni2022/twoge_eks/assets/104282577/64f7cf4c-3304-4248-ba8b-27b3b76efaac)
 
+### Prove Readiness and Liveness Check
+```
+kubectl describe pod/twoge-dep-645f6b46c-qd6wk
+```
+
+![twoge Probe](https://github.com/asanni2022/twoge_eks/assets/104282577/d010b2f6-84cd-4947-94d5-6a780d7748a3)
+
+
 ```
 kubectl describe pods/twoge-dep-77fdb57d87-kz6m5
 ```
