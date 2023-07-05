@@ -296,6 +296,74 @@ spec:
             claimName: twoge-pvc
 ```
 
+### Define a TCP liveness probe
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twoge-dep
+  labels:
+    app: twoge-k8s
+spec:
+  selector:
+    matchLabels:
+      app: twoge-k8s
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: twoge-k8s
+    spec:
+      containers:
+        - name: twoge-container
+          image: asanni2022/twoge-eks
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: "/data"
+              name: twoge-pvc-storage
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          env:
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: db_name
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_url
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_port
+      volumes:
+        - name: twoge-pvc-storage
+          persistentVolumeClaim:
+            claimName: twoge-pvc
+```
+
 ### Run Commands
 ```
 kubectl apply -f Namespace.yaml                                 # create namespace
