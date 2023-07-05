@@ -1,4 +1,4 @@
-# twoge Web App Deployment via Minikube and EKS Cluster
+# Twoge Web App Deployment via Minikube and EKS Cluster
 
 
 ### Deploy twoge web application with Postgres DB using Kubernetes and Minikube
@@ -409,7 +409,35 @@ kubectl describe pods/twoge-dep-77fdb57d87-kz6m5
 ```
 ![twoge describe](https://github.com/asanni2022/twoge_eks/assets/104282577/f38cc66e-8b22-48a4-93d8-94166fdc2cdc)
 
+# Deployment Via EKS Cluster
 
+### Update Service.yml file
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: twoge-k8s-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: twoge-k8s
+```
+
+### Validate 
+```
+kubectl get all
+kubectl describe pod/twoge-dep-86f797bc56-r8tg7
+kubectl get pods --namespace twoge-ns
+```
+
+![eks-twoge](https://github.com/asanni2022/twoge_eks/assets/104282577/7de47090-31b6-43ce-97cb-54dc67f5b37a)
+
+
+
+![EKS-screen](https://github.com/asanni2022/twoge_eks/assets/104282577/7d3a5a14-e4d5-419b-a6f4-bf201a82a9f0)
 
 
 
