@@ -224,6 +224,11 @@ minikube service twoge-k8s-service -n twoge-ns --url
 
 ![twoge1](https://github.com/asanni2022/twoge_eks/assets/104282577/64f7cf4c-3304-4248-ba8b-27b3b76efaac)
 
+```
+kubectl describe pods/twoge-dep-77fdb57d87-kz6m5
+```
+![twoge describe](https://github.com/asanni2022/twoge_eks/assets/104282577/f38cc66e-8b22-48a4-93d8-94166fdc2cdc)
+
 
 
 
