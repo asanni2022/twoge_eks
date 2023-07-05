@@ -1,5 +1,9 @@
-# twoge_eks
+# twoge Web App Deployment
 Deploy twoge web application with Postgres DB using Kubernetes EKS cluster
+<img width="1100" alt="twoge-Minikube" src="https://github.com/asanni2022/twoge_eks/assets/104282577/624e31ba-4c08-4678-8a1a-7dfd9a99d18b">
+
+![twoge-EKS Cluster](https://github.com/asanni2022/twoge_eks/assets/104282577/adc4d75e-8047-4912-a726-44b3ff5c8b89)
+
 
 ### Git Repo
 ```
