@@ -41,6 +41,7 @@ CMD python app.py
 #### Build Dockerfile
 ```
 docker build -t asanni2022/twoge-eks .
+docker push asanni2022/twoge-eks 
 ```
 
 ### Create Namespase.yml file
@@ -441,5 +442,10 @@ kubectl get pods --namespace twoge-ns
 
 
 
-
+## Challenges
+```
+Minikube Vs EKS Cluster
+PV and PVC Issues on EKS Cluster
+Setting up a RDS/ Postgres on server
+```
 
