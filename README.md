@@ -88,9 +88,9 @@ metadata:
   name: postgres-secret
 type: Opaque
 data:
-  db_name: dHdvZ2VfZGI=
-  username: dHdvZ2U=
-  password: dHdvZ2VkYjEyMzQ=
+  db_name: <your database name>
+  username: <your username>
+  password: <your password>
 ```
 
 ### Create twoge web deployment yml file
