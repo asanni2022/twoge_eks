@@ -24,10 +24,10 @@ https://github.com/chandradeoarya/twoge/tree/k8s
 FROM python:alpine
 
 ENV  DB_USER=twoge
-ENV  DB_PASSWORD=twogedb1234
-ENV  DB_HOST=twoge-database-server
+ENV  DB_PASSWORD=<twogepassword>
+ENV  DB_HOST=<yourtwogehost>
 ENV  DB_PORT=5432
-ENV  DB_DATABASE=twoge_db
+ENV  DB_DATABASE=<yourtwoge_dbname>
 
 RUN apk update && \
     apk add --no-cache build-base libffi-dev openssl-dev
